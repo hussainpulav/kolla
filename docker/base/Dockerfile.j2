@@ -212,21 +212,7 @@ RUN {{ macros.install_packages(base_centos_yum_repo_packages | customizable("cen
 
     {% if base_distro == 'rhel' %}
 
-{% block base_rhel_package_installation %}
-# Enable couple required repositories for all RHEL builds
-# Turn on EPEL throughout the build
-RUN yum-config-manager --enable rhel-7-server-optional-rpms \
-    && {{ macros.install_packages( ['yum-plugin-priorities' ], chain=True, clean=False) }} \
-    {%- if install_type != 'binary' or install_metatype != 'rdo' %}
-    && {{ macros.install_packages( [ 'https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm' ], chain=True, clean=False) }} \
-    && rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7 \
-    {% endif -%}
-    && yum-config-manager --enable rhel-7-server-extras-rpms \
-    && yum-config-manager --enable rhel-7-server-rhceph-2-osd-rpms \
-    && yum-config-manager --enable rhel-7-server-rhceph-2-mon-rpms \
-    && yum-config-manager --enable rhel-7-server-rhceph-2-tools-rpms \
-    && {{ macros.rpm_security_update(clean_package_cache) }}
-{% endblock %}
+ RUN dnf config-manager --set-enabled codeready-builder
 
     {% endif %}
     {# Endif for base_distro RHEL #}

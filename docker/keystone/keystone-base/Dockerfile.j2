@@ -61,12 +61,10 @@ RUN mkdir -p /var/www/cgi-bin/keystone \
         {% set keystone_base_packages = [
             'httpd',
             'mod_auth_mellon',
-            'mod_auth_openidc',
             'mod_ssl',
         ] %}
         {% if distro_python_version.startswith('3') %}
         {% set keystone_base_packages = keystone_base_packages + [
-            'python3-ldappool',
             'python3-mod_wsgi'
         ] %}
         {% else %}

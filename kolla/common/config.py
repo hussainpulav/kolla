@@ -23,13 +23,13 @@ BASE_OS_DISTRO = ['centos', 'rhel', 'ubuntu', 'debian']
 BASE_ARCH = ['x86_64', 'ppc64le', 'aarch64']
 DEFAULT_BASE_TAGS = {
     'centos': '7',
-    'rhel': '7',
+    'rhel': '8',
     'debian': '10',
     'ubuntu': '18.04',
 }
 DISTRO_RELEASE = {
     'centos': '7',
-    'rhel': '7',
+    'rhel': '8',
     'debian': '10',
     'ubuntu': '18.04',
 }
