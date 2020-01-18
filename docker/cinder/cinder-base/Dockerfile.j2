@@ -46,7 +46,6 @@ LABEL maintainer="{{ maintainer }}" name="{{ image_name }}" build-date="{{ build
 {% elif install_type == 'source' %}
     {% if base_package_type == 'rpm' %}
         {% set cinder_base_packages = [
-                'ceph-common',
                 'lvm2',
                 'cryptsetup',
         ] %}
