@@ -69,7 +69,6 @@ RUN {{ macros.install_pip(gnocchi_base_pip_packages | customizable("pip_packages
         ] %}
         {% if distro_python_version.startswith('3') %}
         {% set gnocchi_base_packages = gnocchi_base_packages + [
-            'python3-ldappool',
             'python3-mod_wsgi'
         ] %}
         {% else %}

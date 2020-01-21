@@ -17,14 +17,7 @@ LABEL maintainer="{{ maintainer }}" name="{{ image_name }}" build-date="{{ build
 {{ macros.install_packages(barbican_base_packages | customizable("packages")) }}
 
 {% elif install_type == 'source' %}
-    {% if base_package_type == 'rpm' %}
-        {% if distro_python_version.startswith('3') %}
-        {% set barbican_base_packages = ['uwsgi-plugin-python3'] %}
-        {% else %}
-        {% set barbican_base_packages = ['uwsgi-plugin-python'] %}
-        {% endif %}
-
-    {% elif base_package_type == 'deb' %}
+    {% if base_package_type == 'deb' %}
         {% set barbican_base_packages = ['uwsgi-plugin-python3'] %}
     {% endif %}
 
@@ -33,6 +26,7 @@ LABEL maintainer="{{ maintainer }}" name="{{ image_name }}" build-date="{{ build
 {% set barbican_base_pip_packages = [
     '/barbican',
     'mysqlclient',
+    'nss-devel',
     'pastedeploy',
     'python-barbicanclient',
     'uwsgi'
